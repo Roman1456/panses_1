@@ -1,9 +1,7 @@
 import pandas as pd
+import temp
 
 df = pd.read_csv('GoogleApps (3).csv')
 
-#print(df[df['Category'] == 'ART_AND_DESIGN']['Installs'].median())
-
-free = df[df['Type'] == 'Free']['Reviews'].max()
-paid = df[df['Type'] == 'Paid']['Reviews'].max()
-print(free - paid)
+temp = df.pivot_table(columns = 'Category',index = 'Content Rating' , values = 'Reviews',aggfunc = 'max')
+print(temp['EDUCATION', 'FAMILY', 'GAME'])
